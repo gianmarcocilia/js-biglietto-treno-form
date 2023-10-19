@@ -1,4 +1,7 @@
 // Inizio
+const userNomeElem = document.getElementById("nome");
+console.log(nome);
+
 const userChilometriElem = document.getElementById("chilometri");
 console.log(userChilometriElem);
 
@@ -23,7 +26,8 @@ inviaBtn.addEventListener("click", function () {
     console.log(typeof userChilometri, userEta);
     const prezzoBase = prezzoChilometro * userChilometri;
     console.log(prezzoBase);
-
+    const userNome = userNomeElem.value;
+    console.log(userNome);
     // Calcolo Sconto
     if (userEta === "minorenne") {
         sconto = prezzoBase * 0.2;
@@ -38,8 +42,22 @@ inviaBtn.addEventListener("click", function () {
     const prezzoFinale = prezzoBase - sconto;
     console.log(prezzoFinale.toFixed(2));
 
+    // NUMERI RANDOM
+
+    const postoBiglietto = Math.floor(Math.random() * 33) + 1;
+    console.log(postoBiglietto);
     // OUTPUT
-    risultato.innerHTML = `Il prezzo finale del tuo biglietto è €${prezzoFinale.toFixed(2)}`
-    risultato.classList.remove("nascosto")
+    document.getElementById("nomebiglietto").innerHTML = userNome;
+    document.getElementById("numeroposto").innerHTML = postoBiglietto;
+    document.getElementById("costobiglietto").innerHTML = `Prezzo biglietto: €${prezzoFinale.toFixed(2)}`;
+    document.getElementById("sconto").innerHTML = `Sconto applicato: €${sconto}`;
+    risultato.classList.remove("nascosto");
 })
+
+document.getElementById("clear").addEventListener("click", function () {
+    userNomeElem.value = "";
+    userChilometriElem.value = "";
+    risultato.classList.add("nascosto");
+    userEtaElem.value = "";
+  });
 
